@@ -7,11 +7,14 @@ import {
   Avatar,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function Header() {
+  const { auth, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    logout();
     navigate("/login");
   };
 
@@ -25,14 +28,16 @@ export default function Header() {
           </Typography>
         </Box>
 
-        <Button
-          variant="outlined"
-          color="inherit"
-          onClick={handleLogout}
-          sx={{ textTransform: "none" }}
-        >
-          Logout
-        </Button>
+        {auth.isAuthenticated && (
+          <Button
+            variant="outlined"
+            color="inherit"
+            onClick={handleLogout}
+            sx={{ textTransform: "none" }}
+          >
+            Logout
+          </Button>
+        )}
       </Toolbar>
     </AppBar>
   );

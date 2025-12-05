@@ -1,0 +1,4 @@
+[
+    { "email": "admin@test.com", "password": "admin", "token": "dummy-jwt-token" },
+    { "email": "user@test.com", "password": "user", "token": "dummy-user-token" }
+  ]

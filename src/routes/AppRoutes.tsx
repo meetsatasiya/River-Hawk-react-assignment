@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "../pages/login/LoginPage";
 import DashboardPage from "../pages/dashboard/DashboardPage";
 import DashboardLayout from "../components/layout/DashboardLayout";
+import ProtectedRoute from "./ProtectedRoute";
 
 export default function AppRoutes() {
   return (
@@ -10,9 +11,11 @@ export default function AppRoutes() {
       <Route
         path="/dashboard"
         element={
-          <DashboardLayout>
-            <DashboardPage />
-          </DashboardLayout>
+          <ProtectedRoute>
+            <DashboardLayout>
+              <DashboardPage />
+            </DashboardLayout>
+          </ProtectedRoute>
         }
       />
       <Route path="/" element={<Navigate to="/login" replace />} />

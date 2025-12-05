@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { TextField, Button, Paper, Typography, Box } from "@mui/material";
+interface LoginFormProps {
+  /* eslint-disable no-unused-vars */
+  onLogin: (email: string, password: string) => void;
+}
 
-const LoginForm: React.FC = () => {
+const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    onLogin(email, password);
   };
 
   return (
@@ -34,12 +39,7 @@ const LoginForm: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <Button
-          type="submit"
-          variant="contained"
-          fullWidth
-          sx={{ mt: 2 }}
-        >
+        <Button type="submit" variant="contained" fullWidth sx={{ mt: 2 }}>
           Login
         </Button>
       </Box>
