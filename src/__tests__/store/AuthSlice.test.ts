@@ -1,4 +1,4 @@
-import authReducer, { login, logout } from "../store/AuthSlice";
+import authReducer, { login, logout } from "../../store/AuthSlice";
 
 describe("auth slice", () => {
   test("login updates state", () => {

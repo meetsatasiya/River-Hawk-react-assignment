@@ -1,32 +1,29 @@
-import { Box, CircularProgress, Grid, Typography } from "@mui/material";
+import { Box, Grid} from "@mui/material";
 import React from "react";
 import { useGetUsersQuery } from "../../api/UsersApi";
 import UsersTable from "../../components/table/UsersTable";
 import UsersChart from "../../components/charts/UsersChart";
+import Loader from "../../components/common/Loader";
+import ErrorMessage from "../../components/common/ErrorMessage";
 
 const DashboardPage: React.FC = () => {
   const { data: users, isLoading, error } = useGetUsersQuery();
-
-  if (isLoading)
-    return (
-      <Box sx={{ margin: "auto", display: "flex", justifyContent: "center" }}>
-        <CircularProgress />
-      </Box>
-    );
-  if (error)
-    return (
-      <Typography
-        color="error"
-        sx={{ margin: "auto", display: "flex", justifyContent: "center" }}
-      >
-        Error loading users
-      </Typography>
-    );
 
   const usersWithRole = users?.map((user, i) => ({
     ...user,
     role: i % 2 === 0 ? "Admin" : "User",
   }));
+
+  if (isLoading)
+    return (
+      <Loader />
+    );
+    
+  if (error){    
+    return (
+     <ErrorMessage message="Failed to load data" />
+    );
+  } 
 
   return (
     <Box sx={{ padding: 4 }}>
