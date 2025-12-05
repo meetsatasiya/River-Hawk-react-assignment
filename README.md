@@ -1,73 +1,66 @@
-# React + TypeScript + Vite
+React Dashboard Assignment – React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small 2-page React application built with modern tooling and best practices.
+This project includes a static Login page and a Dashboard page that displays mock API data, a sortable & paginated table, and a chart visualization.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Tech Stack : -
 
-## React Compiler
+- React 18 + TypeScript
+- Vite (blazing-fast dev & build)
+- Redux Toolkit + RTK Query (global state + data fetching)
+- MUI (UI components)
+- Recharts (chart visualization)
+- React Router v6
+- Jest (unit tests)
+- ESLint (strict linting rules)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+Getting Started : -
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Install Dependencies:
+- npm install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Run Dev Server:
+- npm run dev
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Run Tests:
+- npm run test
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Linting - Strict ESLint setup with TypeScript-aware rules.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Run linter:
+- npm run lint
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Build:
+- npm run build
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Base URL stored in config/appConfig.ts
+
+Authentication Flow : -
+
+- Static users are stored in config/users.json.
+- Login is validated on the client.
+- Token is stored in Redux + localStorage.
+- Protected routes implemented using a wrapper component.
+
+Features : - 
+
+1. Login Page
+
+- Basic UI
+- Local validation against mock users
+- Stores token in Redux & localStorage
+
+2. Dashboard Page
+
+- Fetches users from RTK Query (no Axios needed)
+- Displays data in a MUI Table with:
+- Sorting
+- Pagination (custom hook-based)
+- Chart added using Recharts
+
+3. Unit Tests
+
+- Test cases written for AuthSlice (login/logout)
+
