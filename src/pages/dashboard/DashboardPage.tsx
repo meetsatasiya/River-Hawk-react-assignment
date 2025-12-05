@@ -1,16 +1,22 @@
-import { Box, Typography } from '@mui/material';
-import React from 'react';
-import { useGetUsersQuery } from '../../api/UsersApi';
+import { Box, CircularProgress, Typography } from "@mui/material";
+import React from "react";
+import { useGetUsersQuery } from "../../api/UsersApi";
+import UsersTable from "../../components/table/UsersTable";
 
 const DashboardPage: React.FC = () => {
-    const { data: users, isLoading, error } = useGetUsersQuery();
+  const { data: users, isLoading, error } = useGetUsersQuery();
 
-    console.log("data", users)
-    console.log("isLoading", isLoading)
-    console.log("error", error)
+  if (isLoading) return <Box sx={{margin:'auto', display:'flex', justifyContent:'center'}}><CircularProgress /></Box>;
+  if (error) return <Typography color="error" sx={{margin:'auto', display:'flex', justifyContent:'center'}}>Error loading users</Typography>;
+
+  const usersWithRole = users?.map((user, i) => ({
+    ...user,
+    role: i % 2 === 0 ? "Admin" : "User",
+  }));
+
   return (
     <Box sx={{ padding: 4 }}>
-     <Typography variant='h4'>Welcome to Dashboard</Typography>
+      <UsersTable users={usersWithRole || []} />
     </Box>
   );
 };
