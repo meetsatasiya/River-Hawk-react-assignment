@@ -1,24 +1,15 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useGetUsersQuery } from '../../api/UsersApi';
 
 const DashboardPage: React.FC = () => {
-  const navigate = useNavigate();
+    const { data: users, isLoading, error } = useGetUsersQuery();
 
-  const handleLogout = () => {
-    navigate('/');
-  };
-
+    console.log("data", users)
+    console.log("isLoading", isLoading)
+    console.log("error", error)
   return (
     <Box sx={{ padding: 4 }}>
-      {/* Header */}
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 3 }}>
-        <Typography variant="h5">Dashboard</Typography>
-        <Button variant="contained" color="error" onClick={handleLogout}>
-          Logout
-        </Button>
-      </Box>
-
      <Typography variant='h4'>Welcome to Dashboard</Typography>
     </Box>
   );
