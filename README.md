@@ -35,6 +35,11 @@ Run linter:
 Build:
 - npm run build
 
+Login Credentials : - 
+
+email: admin@test.com
+password: admin
+
 Base URL stored in config/appConfig.ts
 
 Authentication Flow : -
